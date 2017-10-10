@@ -8,7 +8,10 @@ module.exports = MarkdownFold =
     @subscriptions = new CompositeDisposable
 
     # Register command that folds this view
-    @subscriptions.add atom.commands.add 'atom-workspace', 'markdown-fold:fold': => @fold(/^#+ /g)
+    # fold
+    @subscriptions.add atom.commands.add 'atom-workspace', 'markdown-fold:fold-all': => @fold(/^#+ /g)
+    # fold-h1
+    @subscriptions.add atom.commands.add 'atom-workspace', 'markdown-fold:fold-h1': => @fold(/^# /g)
 
   deactivate: ->
     @subscriptions.dispose()
