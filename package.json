@@ -1,0 +1,21 @@
+{
+  "name": "markdown-fold",
+  "main": "./lib/markdown-fold",
+  "version": "0.0.0",
+  "description": "Fold sections of markdown",
+  "keywords": [
+    "markdown",
+    "fold",
+    "section"
+  ],
+  "activationCommands": {
+    "atom-workspace": "markdown-fold:fold"
+  },
+  "repository": "https://github.com/lemongrassnginger/markdown-fold",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "dependencies": {
+  }
+}
