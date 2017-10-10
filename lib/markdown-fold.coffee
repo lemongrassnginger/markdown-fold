@@ -8,19 +8,18 @@ module.exports = MarkdownFold =
     @subscriptions = new CompositeDisposable
 
     # Register command that folds this view
-    @subscriptions.add atom.commands.add 'atom-workspace', 'markdown-fold:fold': => @fold()
+    @subscriptions.add atom.commands.add 'atom-workspace', 'markdown-fold:fold': => @fold(/^#+ /g)
 
   deactivate: ->
     @subscriptions.dispose()
 
   # serialize: ->
 
-  fold: ->
+  fold: (_search) ->
     # fail returns FALSE
     return false unless _editor = atom.workspace.getActiveTextEditor()
     _buffer = _editor.buffer
-    # _checkpoint = _editor.createCheckpoint()  # does not work!
-    _search = /^# /g  # This would change according to what marks a heading
+    # _search = /^# /g  # This would change according to what marks a heading
     _lineNr = [] # empty array saves row numbers
 
     console.log 'started: test command'
