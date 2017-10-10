@@ -7,6 +7,11 @@ To unfold a section, place the cursor on the header line and press the right arr
 - `fold-all`: Folds all sections, leaving subheadings visibile
 - `fold-h1`: Folds top level headings, hiding subheadings
 
+# Contributing
+Please do!
+
+Make a change, fix a bug, add a feature, save the world. Once that's done open a pull request :)
+
 # See also
 [markdown-folding](https://atom.io/packages/markdown-folding) for similar but different
 
