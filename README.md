@@ -1,5 +1,5 @@
 # Fold sections of Markdown
-Fold markdown headers, revealing the outline of the document
+Fold markdown headers, revealing the outline of the document in [Atom](http://atom.io)
 
 To unfold a section, place the cursor on the header line and press the right arrow key
 
