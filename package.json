@@ -6,10 +6,11 @@
   "keywords": [
     "markdown",
     "fold",
-    "section"
+    "section",
+    "outline"
   ],
   "activationCommands": {
-    "atom-workspace": "markdown-fold:fold"
+    "atom-workspace": "markdown-fold:fold-all"
   },
   "repository": "https://github.com/lemongrassnginger/markdown-fold",
   "license": "MIT",
