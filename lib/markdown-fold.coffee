@@ -21,12 +21,12 @@ module.exports = MarkdownFold =
   # Fold all sections in active editor separated by H1 headers
   foldAll: ->
     # Fold all sections separated by header lines (lines starting with one or more #)
-    @foldByHeader(/^=+ /g)
+    @foldByHeader(/^#+ /g)
 
   # fold all sections in active editor separated by any level of header
   foldH1: ->
     # fold all sections separated by H1 header lines (lines starting with a single #)
-    @foldByHeader(/^= /g)
+    @foldByHeader(/^# /g)
 
   # Fold sections in active editor that are separated by lines matching xHeaderPattern
   # xHeaderPattern: regex pattern defining a section heading line, eg /^# /g
