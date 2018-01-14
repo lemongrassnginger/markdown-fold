@@ -12,7 +12,7 @@
   "activationCommands": {
     "atom-workspace": "markdown-fold:fold-all"
   },
-  "repository": "https://github.com/lemongrassnginger/markdown-fold",
+  "repository": "https://github.com/stu-b-doo/markdown-fold",
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
