@@ -35,20 +35,51 @@ module.exports = MarkdownFold =
     return false unless oEditor = atom.workspace.getActiveTextEditor()
     oBuffer = oEditor.buffer
 
-    # row numbers of the start of each buffer line that matches the pattern
-    aLines = @getHeaderRowNumbers(oBuffer, xHeaderPattern)
+    # row numbers corresponding to headers
+    headerLines =@getHeaderRowNumbers(oBuffer, xHeaderPattern)
 
     # include last line to close the last section in the buffer
-    aLines.push oBuffer.getLastRow()
+    headerLines.push oBuffer.getLastRow()
 
     # Fold rows between header rows
-    @foldSections(oEditor, aLines)
+    @foldSections(oEditor, headerLines)
 
     # feedback TRUE
     return true
 
-  # return array of line numbers for lines in oBuffer that match xHeaderPattern
+  # return an array of line numbers for lines in oBuffer corresponding to headers
   getHeaderRowNumbers: (oBuffer, xHeaderPattern) ->
+    # row numbers of the start of each buffer line that matches the pattern
+    aLines = @getPatternRowNumbers(oBuffer, xHeaderPattern)
+
+    # pairs of row numbers corresponding to the beginning and the end of code blocks
+    codeBlocks = []
+    codeBlocks = codeBlocks.concat @getCodeBlocks(oBuffer, /~~~~/g)
+    codeBlocks = codeBlocks.concat @getCodeBlocks(oBuffer, /```/g)
+
+    # filtering callbacks
+    blockContains = (pair, x) -> pair[0]<=x && pair[1]>=x
+    blockExist = (blocks, x) -> (codeBlocks.find (b) -> blockContains(b, x))?
+
+    # filter the actual headers
+    filteredLines = aLines.filter (x) -> !blockExist(codeBlocks, x)
+    return filteredLines
+
+  # return an array of couples of line numbers, corresponding to the delimiters of a code block
+  getCodeBlocks: (oBuffer, codeBlockPattern) ->
+    # row numbers of all code delimiters
+    codeLines = @getPatternRowNumbers(oBuffer, codeBlockPattern)
+    # callback creating pairs
+    createPairs = (result, value, index, array) ->
+          if index % 2 == 0
+            result.push array.slice(index, index + 2)
+          result
+    # code blocks delimiters
+    codeBlocks = codeLines.reduce createPairs, []
+    return codeBlocks
+
+  # return array of line numbers for lines in oBuffer that match xHeaderPattern
+  getPatternRowNumbers: (oBuffer, xHeaderPattern) ->
     aLines = []
     # scan buffer for rows matching the section header pattern
     # this does a buffer wide search, but a limited search
