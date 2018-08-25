@@ -52,6 +52,7 @@ module.exports = MarkdownFold =
     # row numbers of the start of each buffer line that matches the pattern
     aLines = @getPatternRowNumbers(oBuffer, xHeaderPattern)
 
+    # Certain lines may match the header pattern but shouldn't be folded (eg those in code blocks/backticks). Filter out those lines
     # pairs of row numbers corresponding to the beginning and the end of code blocks
     codeBlocks = []
     codeBlocks = codeBlocks.concat @getCodeBlocks(oBuffer, /~~~~/g)
