@@ -1,7 +1,7 @@
 {
   "name": "markdown-fold",
   "main": "./lib/markdown-fold",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Fold sections of markdown",
   "keywords": [
     "markdown",
